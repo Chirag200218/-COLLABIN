@@ -14,3 +14,22 @@
                                   
                               <p class="text-base font-medium ml-4 text-gray-700">Continue with Twitter</p>
                           </button> */}
+
+///////////////////////////////////////////////
+FOR INSIDE API FOLDER
+
+import User from "../../../model/user"
+import connectmongo from "../../../utils/mongoconnect";
+import Category from "../../../model/category";
+import Group from '../../../model/group';
+import Discussion from "../../../model/discussion";
+
+
+/////////////////////////////////////////////////////////
+FOR OUTSIDE API FOLDER
+
+import User from "../../model/user"
+import connectmongo from "../../utils/mongoconnect";
+import Category from "../../model/category";
+import Group from '../../model/group';
+import Discussion from "../../model/discussion";
