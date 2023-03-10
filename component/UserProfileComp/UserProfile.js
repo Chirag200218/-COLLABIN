@@ -78,7 +78,7 @@ const UserProfile = () => {
                       <div className={style.profileOptions}>
                         <p onClick={()=>setContent("About")} style={{borderRight:"1px solid grey"}}>About</p>
                         <p onClick={()=>setContent("Posts")} >Posts</p>
-                        <p onclick={()=>setContent("Groups")} style={{borderLeft:"1px solid grey"}}>Groups</p>
+                        <p onClick={()=>setContent("Groups")} style={{borderLeft:"1px solid grey"}}>Groups</p>
                       </div>
               </div>   
             </div>
