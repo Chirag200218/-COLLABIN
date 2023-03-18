@@ -1,4 +1,6 @@
-import User from "../../model/user";
+import { useSelector } from "react-redux";
+import User from "../../model/user"
+ 
 import connectmongo from "../../utils/mongoconnect";
 
 const handler = async(req, res)=> {
@@ -7,12 +9,11 @@ const handler = async(req, res)=> {
     await connectmongo();
     if(req.method === 'POST'){  //SignUP
         try{
-            const { name,email,password,profilePic } = req.body; 
+            const { name,email,password } = req.body; 
             const Userdata = new User({
                 name: name,
                 email: email,
                 password: password,
-                image:profilePic,
             })
             const result = await User.insertMany([Userdata]);
             res.status(200).json({ id:result[0]._id,message:"User connected Succesfully"});
@@ -34,19 +35,24 @@ const handler = async(req, res)=> {
             const Education = allData.Education===undefined?[]:allData.Education;
             const Projects = allData.Project===undefined?[]:allData.Project;
             const Skills = allData.Skill===undefined?[]:allData.Skill;
-            const Links = allData.Links===undefined?[]:allData.Link
+            const Links = allData.Links===undefined?[]:allData.Links;
             const Personal = req.body.personal===undefined?{}:req.body.personal;
-            console.log(Projects);
-            User.findByIdAndUpdate(id,{
+            console.log(req.body.allData);
+            console.log("----------------------------------------------------------------------");
+            console.log(req.body.personal);
+            console.log("----------------------------------------------------------------------");
+            console.log(id,selectedCats,postIds,friendId,Experience,Education,Skills,Projects,Links);
+
+            User.findByIdAndUpdate(id,{ 
                     $push:{
-                        "categoryId":{$each:selectedCats},
-                        "PostId":{$each:postIds},
-                        "friendId":{$each:friendId},
                         "experienceId":{$each:Experience},
                         "educationId":{$each:Education},
-                        "skillId":{$each:Skills},
                         "projectId":{$each:Projects},
+                        "skillId":{$each:Skills},
+                        "PostId":{$each:postIds},
+                        "friendId":{$each:friendId},
                         "linkId":{$each:Links},
+                        "categoryId":{$each:selectedCats},
                     },
                     "location":Personal?.location,
                     "headline":Personal?.headline,

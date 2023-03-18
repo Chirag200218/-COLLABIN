@@ -10,7 +10,8 @@ import {convertToBase64} from '../../utils/base64'
 import jwtDecode from "jwt-decode"
 import { GoogleLogin,googleLogout } from '@react-oauth/google';
 import styles from '../../styles/signup.module.scss'
-import { DotLoader } from 'react-spinners';
+import { DotLoader , ClipLoader} from 'react-spinners';
+import { motion } from "framer-motion";
 
 
 const SignupP = ()=> {
@@ -20,15 +21,18 @@ const SignupP = ()=> {
     const User = useSelector((state)=>state.user);
     const dispatch = useDispatch();
     const[ppic,setppic]=useState(false);
+    const [load,setLoad] = useState(false);
 
     const onSubmit = async(data) => {
       try {
+        setLoad(true);
         const res= await axios.post(`${base_url}/api/details/user`,data);
         localStorage.setItem("userId", res.data.id); 
         data._id=res.data.id; //adding over form data
         console.log(data._id);
         dispatch(CreateId(data));
         router.push("/categories");
+        setLoad(false);
       } catch (error) {
         console.log(error.message);
       }
@@ -70,7 +74,14 @@ const SignupP = ()=> {
     
   return (
     <div className={styles.box}>
+        {
+          load && (
+            <div className="loaderPage">
+              <ClipLoader color="#36d7b7" />
+            </div>
+          )
 
+        }
         <div className={styles.comp}>
           <p>CollabIn</p>
         </div>
@@ -102,7 +113,7 @@ const SignupP = ()=> {
               )}
             
         
-            <button type='submit'>Sign up</button>
+            <motion.button whileTap={{scale:"0.8"}} type='submit'>Sign up</motion.button>
         </form>
 
         <p className={styles.onsite}>Already a user?<span style={{marginLeft:"7px",fontSize:"15px",color:"blue",cursor:"pointer"}} onClick={()=>onClickFunc()}>SignIn</span></p>
@@ -112,6 +123,19 @@ const SignupP = ()=> {
           onError={(res)=>console.log("google login error",res)}
         />}
       </div>
+      <style jsx>
+        {`
+          .loaderPage{
+            position:absolute;
+            height:100%;
+            width:100%;
+            background:transparent;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+          }
+        `}
+        </style>
     </div>
   )
 }

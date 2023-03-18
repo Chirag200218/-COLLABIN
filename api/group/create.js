@@ -1,5 +1,5 @@
 import Group from '../../model/group';
-import connectmongo from '../../utils/mongoconnect';
+import connectmongo from "../../utils/mongoconnect";
 
 const handler = async(req, res)=> {
     await connectmongo();

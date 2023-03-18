@@ -1,4 +1,4 @@
-import User from "../../../model/user";
+import User from "../../model/user";
 export default async function handler(req,res){
     if(req.method==="PUT"){
         try{

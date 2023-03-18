@@ -1,4 +1,4 @@
-import User from "../../model/user";
+ import User from "../../model/user";
 import connectmongo from "../../utils/mongoconnect";
 
 const handler = async(req, res)=> {
@@ -9,8 +9,8 @@ const handler = async(req, res)=> {
             const Userdata = await User.findOne({email:email,password:password});
             res.status(200).json({ id:Userdata._id,success:true,message:"User connected Succesfully"});
         }
-        catch{
-            res.status(400).json({message:"error occured"});
+        catch(err){
+            res.status(400).json({message:err.message});
         }
     }
 }
