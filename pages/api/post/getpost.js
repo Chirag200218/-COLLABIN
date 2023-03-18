@@ -1,7 +1,7 @@
-import User from "../../model/user";
+import User from "../../../model/user";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../utils/fireconnect";
-import connectmongo from "../../utils/mongoconnect";
+import connectmongo from "../../../utils/mongoconnect";
 
 export default async function handler(req, res) {
     await connectmongo();
