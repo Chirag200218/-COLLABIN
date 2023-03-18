@@ -1,12 +1,14 @@
- import React from 'react'
+import React from 'react'
 import { useState } from 'react'
- import CreateGroup from './CreateGroup'
- import style from './style.module.scss'
- import { useSelector } from 'react-redux'
- import axios from 'axios';
- const base_url = process.env.NEXT_PUBLIC_URL;
- import useSWR from 'swr';
+import CreateGroup from './CreateGroup'
+import style from './style.module.scss'
+import { useSelector } from 'react-redux'
+import axios from 'axios';
+const base_url = process.env.NEXT_PUBLIC_URL;
+import useSWR from 'swr';
 import Filter from './Filter';
+import Swal from 'sweetalert2'
+
 
 
  const Group = () => {
@@ -15,6 +17,34 @@ import Filter from './Filter';
     const [load,setLoad]=useState(true);
     const [myWork,setMyWork] = useState(false);
     const [grouppost2,setgroupPost2] = useState([]);
+    const modal = () => {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "last step toward your achieveing your latest oppurtunity",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, send it!',
+            borderRadius: '50px',
+            padding: '2em',
+            backdrop: `
+            rgba(0,0,123,0.4)
+            left top
+            no-repeat
+            `
+            
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Sent!',
+                'Your message has been sent.',
+                'success'
+                )
+            }
+            })
+    }
 
     const MailMessage = async (e,toemail,describe)=>{
         e.preventDefault();
@@ -100,7 +130,7 @@ import Filter from './Filter';
                                 <p>{d?.about}</p>
                             </div>
                             <p style={{fontWeight:"600"}}>Required Skills</p>
-                            <div>
+                            <div style={{display:"flex",flexWrap:"wrap"}}>
                             {
                                 d?.category.map((cat,indx)=>(
                                     <span key={indx+"mc"}>{cat}</span>
@@ -111,7 +141,8 @@ import Filter from './Filter';
                         </div>
                         <div className={style.dock} onClick={(e)=>MailMessage(e,d?.groupEmail,d?.title)}>
                             {console.log(d?.groupEmail)}
-                            <button>dock</button>
+                            <button onClick={()=>modal()}>Dock</button>
+                            {/* {Swal("Good job!", "You clicked the button!", "success")} */}
                         </div>
                     </div>
                 ))
@@ -134,16 +165,15 @@ import Filter from './Filter';
                     <div className={style.body}>
                         <h2>{d?.title}</h2>
                         <p>{d?.description}</p>
-
                         <div>
                             <h2>About Group</h2>
                             <p>{d?.about}</p>
                         </div>
                         <p style={{fontWeight:"600"}}>Required Skills</p>
-                        <div>
+                        <div style={{display:"flex",flexWrap:"wrap",border:"1px solid red"}}>
                         {
                             d?.category.map((cat,indx)=>(
-                                <span key={indx+"mc"}>{cat}</span>
+                                <span style={{display:"block"}} key={indx+"mc"}>{cat}</span>
                             ))
                         }
 

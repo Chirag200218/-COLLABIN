@@ -78,7 +78,7 @@ const Discussion = () => {
                         <div className={style.body}>
                             <h2>{d?.title}</h2>
                             <p>{d?.description}</p>
-                            <div>
+                            <div style={{display:"flex",flexWrap:"wrap"}}>
                             {
                                 d?.category.map((cat)=>(
                                     <span>{cat}</span>

@@ -122,7 +122,7 @@ function Category_selection() {
               <HandleSubCategories/>
             </SubCategory>
           </CategorySection>
-          <button as={motion.button} whileTap={{scale:0.8}} className={styles.submitBut} onClick={(e)=>handleSubmit(e)}>submit</button>
+          <button as={motion.button} whileTap={{scale:0.8}} className={styles.button} onClick={(e)=>handleSubmit(e)}>submit</button>
     </div>
     
   )

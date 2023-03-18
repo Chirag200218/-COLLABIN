@@ -1,5 +1,5 @@
-import User from "../../../model/user";
-import connectmongo from "../../../utils/mongoconnect";
+import User from "../../model/user";
+import connectmongo from "../../utils/mongoconnect";
 const handler = async(req, res)=> {
     await connectmongo();
     if(req.method==='PUT'){

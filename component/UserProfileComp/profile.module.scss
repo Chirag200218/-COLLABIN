@@ -30,11 +30,11 @@
 }
 .optionFrame{
     position:  absolute;
-    right: 10px;
+    right: 0px;
     height: 100vh;
     width: 35%;
     background-color: #f7f7f7;
-    z-index: 2;
+    z-index: 999;
 }
 .menuButton{
     display: block;
@@ -182,8 +182,7 @@
     display: flex;
     margin: 8px 0px ;
     .compImg{
-        width: 25%;
-        border: 1px solid green;
+        width: 20%;
     }
     .compInfo{
         padding: 8px;

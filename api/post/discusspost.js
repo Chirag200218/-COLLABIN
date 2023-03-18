@@ -1,5 +1,5 @@
-import Discussion from "../../../model/discussion";
-import connectmongo from "../../../utils/mongoconnect";
+import Discussion from "../../model/discussion";
+import connectmongo from "../../utils/mongoconnect";
 
 export default async function handler(req,res){
     await connectmongo();

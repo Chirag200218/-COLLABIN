@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
-import User from "../../../model/user"
-import connectmongo from "../../../utils/mongoconnect";
+import User from "../../model/user"
+import connectmongo from "../../utils/mongoconnect";
 
 const handler = async(req, res)=> {
 
@@ -27,6 +26,7 @@ const handler = async(req, res)=> {
         try{
             const id = req.body.id;
             const allData = req.body.allData===undefined?[]:req.body.allData;
+            const image = req.body?.personal?.image===undefined?'/images/user.svg':req.body.personal.image;
             const selectedCats = req.body.selectedCats===undefined?[]:req.body.selectedCats;
             const postIds =  req.body.postIds===undefined?[]:[req.body.postIds];
             const friendId = req.body.friendId===undefined?[]:[req.body.friendId];
@@ -36,11 +36,11 @@ const handler = async(req, res)=> {
             const Skills = allData.Skill===undefined?[]:allData.Skill;
             const Links = allData.Links===undefined?[]:allData.Links;
             const Personal = req.body.personal===undefined?{}:req.body.personal;
-            console.log(req.body.allData);
-            console.log("----------------------------------------------------------------------");
-            console.log(req.body.personal);
-            console.log("----------------------------------------------------------------------");
-            console.log(id,selectedCats,postIds,friendId,Experience,Education,Skills,Projects,Links);
+            // console.log(req.body.allData);
+            // console.log("----------------------------------------------------------------------");
+            // console.log(req.body.personal);
+            // console.log("----------------------------------------------------------------------");
+            // console.log(id,selectedCats,postIds,friendId,Experience,Education,Skills,Projects,Links,image);
 
             User.findByIdAndUpdate(id,{ 
                     $push:{
@@ -55,8 +55,8 @@ const handler = async(req, res)=> {
                     },
                     "location":Personal?.location,
                     "headline":Personal?.headline,
-                    "image":Personal?.profilePic,
                     "name":Personal?.name,
+                    "image":image,
             },(err,doc)=>{
                 if(err){
                     console.log(err);
@@ -83,7 +83,7 @@ const handler = async(req, res)=> {
         try{
             const id = req.query.id;
             if (id.match(/^[0-9a-fA-F]{24}$/)) {
-                const result = await User.findById(id).select("name image");
+                const result = await User.findById(id).select("name image skillId location headline");
                 res.status(200).json({result});
             }else{
                 res.status(200).json([]);

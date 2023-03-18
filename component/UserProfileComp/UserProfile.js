@@ -37,11 +37,10 @@ const OpenBar = ({setOpenBar})=>{
     const handleUpdate = (e)=>{
       console.log("ijofd");
         e.preventDefault();
-        // 
         router.push("/userprofile")
     }
       return (
-            <motion.div className={style.optionFrame} viewport={{once:true}} initial={{x:70}} whileInView={{x:10}} transition={{type: "tween",duration:"0.5"}} exit={{x:150}}>
+            <motion.div className={style.optionFrame} viewport={{once:true}} initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:"0.3"}} exit={{x:150}}>
               <button className={style.menuButton} onClick={(e)=>handleLogout(e)}>Logout</button>
               <button   className={style.menuButton} onClick={(e)=>handleUpdate(e)}>Update profile</button>
             </motion.div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import style from './profile.module.scss';
 
 const Groups = () => {
   return (
