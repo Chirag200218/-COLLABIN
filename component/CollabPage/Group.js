@@ -5,9 +5,8 @@ import { useState } from 'react'
  import { useSelector } from 'react-redux'
  import axios from 'axios';
  const base_url = process.env.NEXT_PUBLIC_URL;
- import useSWR from 'swr'
-import Filter from './Filter'
-import { BarLoader } from 'react-spinners';
+ import useSWR from 'swr';
+import Filter from './Filter';
 
 
  const Group = () => {
@@ -25,14 +24,17 @@ import { BarLoader } from 'react-spinners';
 
     const{data,error} = useSWR(user._id===null?null:`${base_url}/api/group/fetch`,async function fetcher(){
         let arr = new Set([]);
+        console.log(user.categoryId);
         await Promise.all(user.categoryId.map(async(cat)=>{
             const res = await axios.get(`${base_url}/api/categorys/updateCategories?category=${cat}&other=groupIds`);
-            if(res.data.result.length!==0)
-                if(res.data.result.length!==0)
-                res.data.result[0]?.GroupsIds.map((ids)=>{
-                    arr.add(ids)
-                })
+            console.log(res.data.result);
+                if(res.data.result.length!==0){
+                    res.data.result[0]?.GroupsIds.map((ids)=>{
+                        arr.add(ids)
+                    })
+                }
         }))
+        console.log(arr);
         let groupPost = [];
         await Promise.all(Array.from(arr).map(async(id)=>{
             const res= await axios.get(`${base_url}/api/group/fetch?id=${id}`);
@@ -53,7 +55,7 @@ import { BarLoader } from 'react-spinners';
             }))
         }
         setgroupPost2(mypost);
- 
+        {console.log(groupPost)}
         return groupPost;
     },{revalidateOnFocus: false,
         revalidateOnMount:true,
@@ -70,13 +72,10 @@ import { BarLoader } from 'react-spinners';
         setLoad(false);
       },1000)
     )
+
    return (
     <div className={style.groupFrame}> 
-        {load && 
-        <div className={style.loader}>
-          <BarLoader  color="#3675d6"  height={6} width={131} />
-          <h3>Find your Complement</h3>
-        </div>}
+        
         <div className={style.createPost} onClick={()=>setOpen(true)}>Post</div>
         <Filter opt={"group"} setMyWork={setMyWork}/>
         {open===true && (<CreateGroup setOpen={setOpen}/>)}

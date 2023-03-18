@@ -212,7 +212,6 @@ const Index = () => {
    
   }
   const onSubmit = async(data) => {
-    console.log(allData)
     await axios.put(`${base_url}/api/details/user`,{allData,personal:data,id:user._id});
   }
   return (

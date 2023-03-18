@@ -6,10 +6,11 @@ import style from './Explore.module.scss';
 import useSWR from 'swr';
 import { Autocomplete,TextField } from '@mui/material';
 import { allCategory } from '../category/category_data';
+import { motion } from 'framer-motion';
 
 const Index = () => {  
   const user = useSelector((state)=>state.user);
-  const[collabed,setCollabed] = useState(new Set());
+  const[collabed,setCollabed] = useState(new Set(user.friendId));
   const[name,setName] = useState([]);
 
   const {data,error} = useSWR(user._id===null?null:`${base_url}/api/details/user?ther=allFriendsId`,async function fetcher(){
@@ -64,7 +65,7 @@ const Index = () => {
         await axios.put(`${base_url}/api/details/user`,{id:user._id,friendId:id});  //check it from here
         setCollabed(new Set([...collabed,id]));
       }else{
-        console.log(friends);
+        console.log("friends");
       }
     }catch(err){
       console.log("--------------------handleCollab---------------------");
@@ -76,15 +77,15 @@ const Index = () => {
     <div className={style.frame}>
       <div className={style.block}>
         <h1>Explore</h1>
-        {/* <input type="text" placeholder='Search' id="combo"></input> */}
+         
         <div className={style.block}>
-          <Autocomplete
+          {/* <Autocomplete
             freeSolo
             sx={{  width: 300 }}
             onChange={(e, value) => console.log(value)}
             options={name? name.map((option) => option.name) : ""}
-            renderInput={(params) => <TextField {...params} label="Search" onChange={(e) => onchange(e)}/>}
-          />
+            // renderInput={(params) => <TextField {...params} label="Search" onChange={(e) => onchange(e)}/>}
+          /> */}
         </div>
         <div className={style.options}>
           <select placeholder='Categories'>
@@ -103,12 +104,11 @@ const Index = () => {
         <div className={style.userCont}>
           {
             data.map((sug,idx)=>{
-              if(sug===undefined){
-                return <></>;
+              if(sug===undefined || sug===null){
+                return <div key={idx+"sug"}></div>;
               }
               return (
                 <div key={idx+"sug"} className={style.box}>
-                  {console.log(sug)}
                   <div className={style.info}>
                     <div className={style.info2}>
                       <div style={{alignItems: "center"}}><img src={'images/user.svg'}></img></div>
@@ -125,7 +125,7 @@ const Index = () => {
                       <span>Java</span><span>Java</span></div>
                     </div>
                   </div>
-                  {!collabed.has(sug?._id) && <button onClick={(e)=>handleCollab(sug?._id)}>Collab</button>}
+                  {!collabed.has(sug?._id) && <motion.button whileTap={{scale:"0.8"}} onClick={(e)=>handleCollab(sug?._id)}>Collab</motion.button>}
                   {collabed.has(sug?._id) && <button>Friends</button>}  
                 </div>
               )  

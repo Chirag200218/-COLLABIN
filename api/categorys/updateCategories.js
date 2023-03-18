@@ -1,3 +1,4 @@
+
 import Category from '../../model/category';
 import connectmongo from '../../utils/mongoconnect';
 const handler = async(req,res)=>{
