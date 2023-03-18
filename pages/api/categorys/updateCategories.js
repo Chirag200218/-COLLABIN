@@ -49,6 +49,7 @@ const handler = async(req,res)=>{
         // UPDATING CATEGORY
 
         let {postId,category,userId,GroupIds,DisscussionId} = req.body;
+        console.log(category)
         category.map((cat)=>{
             const ct = cat.toLowerCase();
             const pId = postId===undefined?[]:postId;

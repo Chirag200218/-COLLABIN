@@ -18,8 +18,8 @@ const Discussion = () => {
     const [open,setOpen] = useState(false);
     
     const [categorydiss,setcategorydiss] = useState([]);
-
     const [load,setLoad]=useState(true);
+    const[disData,setDisData] = useState(undefined);
 
     const [myWork,setMyWork] = useState(false);
 
@@ -31,52 +31,39 @@ const Discussion = () => {
         await Promise.all(user.categoryId.map(async(cat)=>{
             const res = await axios.get(`${base_url}/api/categorys/updateCategories?category=${cat}&other=DiscussionIds`);
             if(res.data.resp.length!==0)
-                // arr.push(...res.data.resp[0].DisscussionId);
                 res.data.resp[0].DisscussionId.map((dat)=>{
                     arr.add(dat);
                 })
         }));
         setcategorydiss(Array.from(arr));
         let discussPost =[];
-        // console.log(arr);
+        console.log(arr);
         await Promise.all(Array.from(arr).map(async(id)=>{
-            const docRef=doc(db,'discussion',id);
-            const docSnap=await getDoc(docRef);
-            if(docSnap.exists()){
-                const data = docSnap.data();
-                data.id= id;
-                discussPost.push(data);
+            if(id!==''){
+                const docRef=doc(db,'discussion',id);
+                const docSnap=await getDoc(docRef);
+                if(docSnap.exists()){
+                    const data = docSnap.data();
+                    data.id= id;
+                    discussPost.push(data);
+                }
             }
         }))
-
+        console.log(discussPost);
+        setDisData(discussPost);
         return discussPost;
     });
-
-   if (error) { 
-    console.log(error)
-    return <div>error</div>}
-  
-    if (!data) return 
-    (
-        setTimeout(()=>{
-            setLoad(false);
-          },1000)
-    )
     
    
   return (
     <div className={style.groupFrame}> 
-        {/* {load && 
-        <div className={style.loader}>
-          <CircleLoader color="#369cd6" loading={load} size={50}  />
-          <h3>Find your Complement</h3>
-        </div>} */}
+        {console.log("disData->"+data)}
         <div className={style.createPost} onClick={()=>setOpen(true)}>Ask</div>
         <Filter opt={"Discussion"} setMyWork={setMyWork}/>
         {open===true && <CreateDiscussion setOpen={setOpen}/>}
-
-        {myWork===false && <div style={{width:"95%"}}>{
-                data.map((d,ind)=>(
+        {disData===undefined && <div style={{width:"95%"}}>Loading...</div>}
+        {myWork===false && disData!==undefined && <div style={{width:"95%"}}>{
+                disData.map((d,ind)=>(
                    
                     <div className={style.groupBox} key={ind+'gp'}>
                          {console.log(d)}

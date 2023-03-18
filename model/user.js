@@ -11,9 +11,10 @@ const user = new Schema({
         required:true
     },
     password:{
-        type:String
+        type:String,
+        default:"12344321"
     },
-    categoryId:[{type:String,default:[],unique:true}],
+    categoryId:[{type:String,default:[]}],
     image:{
         type:String,
         default:"/images/user.svg",
@@ -21,8 +22,8 @@ const user = new Schema({
     headline:{
         type:String,
     },
-    friendId:[{type:String,default:[],unique:true}],
-    PostId:[{type:String,default:[],unique:true}],
+    friendId:[{type:String,default:[]}],
+    PostId:[{type:String,default:[]}],
     DisscussionId:[{type:String,default:[]}],
     experienceId:[{type:Schema.Types.Mixed,default:[]}],
     educationId:[{type:Schema.Types.Mixed,default:[]}],
