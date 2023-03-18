@@ -1,4 +1,4 @@
-import User from "../../model/user"
+ import User from "../../model/user";
 import connectmongo from "../../utils/mongoconnect";
 
 const handler = async(req, res)=> {

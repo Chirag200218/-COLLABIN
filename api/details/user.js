@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import User from "../../model/user"
+ 
 import connectmongo from "../../utils/mongoconnect";
 
 const handler = async(req, res)=> {
 
     // INTIAL USER DATA POSTED
-    // await connectmongo();
+    await connectmongo();
     if(req.method === 'POST'){  //SignUP
         try{
             const { name,email,password } = req.body; 

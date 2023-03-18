@@ -1,5 +1,5 @@
 import Category from "../../model/category";
-import User from "../../model/user"
+import User from "../../model/user";
 import connectmongo from "../../utils/mongoconnect";
 
 export default async function handler(req,res){
