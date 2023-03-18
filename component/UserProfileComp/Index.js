@@ -6,7 +6,8 @@ import style from '../../styles/updateProfile.module.scss';
 import axios from 'axios';
 const base_url = process.env.NEXT_PUBLIC_URL;
 import { motion } from 'framer-motion';
-
+import { Router, useRouter } from 'next/router';
+import { convertToBase64 } from '../../utils/base64';
 
 const Experience  = ({setForm,setAllData,allData})=>{
   const {register,handleSubmit,formState: { errors }} = useForm();
@@ -149,6 +150,7 @@ const Link = ({setForm,setAllData,allData})=>{
 const Index = () => {
   const user = useSelector((state)=>state.user);
   const [form,setForm] = useState("");
+  const router = useRouter();
   const [allData,setAllData] = useState({
     Experience:[],
     Education:[],
@@ -212,7 +214,10 @@ const Index = () => {
    
   }
   const onSubmit = async(data) => {
+    const res = await convertToBase64(data.image[0]);
+    data.image = res;
     await axios.put(`${base_url}/api/details/user`,{allData,personal:data,id:user._id});
+    router.back();
   }
   return (
     

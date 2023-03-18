@@ -7,7 +7,9 @@ import Link from 'next/link';
 const CompSection = ({exp})=>{
     return(
         <div className={style.compCont}>
-            <div className={style.compImg}><img style={{height:"100%",width:"100%",backgroundSize:"cover"}} src={'images/default_com.png'}></img></div>
+
+            <div className={style.compImg}><img style={{width:"100%",height:"100%",backgroundSize:"cover"}} src={'images/default_com.png'}></img></div>
+ 
             <div className={style.compInfo}> 
                 <h3 style={{}}>{exp.companyname}</h3>
                 <h5>{exp.position}</h5>
@@ -20,7 +22,8 @@ const CompSection = ({exp})=>{
 const SchoolSection = ({educ})=>{
     return(
         <div className={style.compCont}>
-            <div className={style.compImg}><img style={{height:"100%",width:"100%",backgroundSize:"cover"}} src={'images/default_school.png'}></img></div>
+            <div className={style.compImg}><img style={{width:"100%",height:"100%",backgroundSize:"cover"}} src={'images/defaul_school.png'}></img></div>
+ 
             <div className={style.compInfo}> 
                 <h3 style={{}}>{educ.schoolname}</h3>
                 <h5>{educ.degree}</h5>
@@ -33,7 +36,8 @@ const SchoolSection = ({educ})=>{
 const ProjectSection = ({proj})=>{
     return(
         <div className={style.ProjCont}>
-            <div  style={{width:"100%",height:"120px",border:"1px solid green"}} className={style.projImg}><img style={{height:"100%",width:"100%",backgroundSize:"cover"}} src={'images/proj_dummy.png'}></img></div>
+            <div  style={{width:"100%",height:"120px"}} className={style.projImg}><img style={{width:"100%",height:"100%",backgroundSize:"contains"}} src={'images/proj_dummy.jpg'}></img></div>
+ 
             <Link className={style.ProjInfo} href ={proj.link}> 
                 <h3>{proj.title}</h3>
                 <p>{proj.description}</p>

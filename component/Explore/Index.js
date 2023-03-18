@@ -12,6 +12,8 @@ const Index = () => {
   const user = useSelector((state)=>state.user);
   const[collabed,setCollabed] = useState(new Set(user.friendId));
   const[name,setName] = useState([]);
+  const[catUser,setCatUser]=useState([]);
+  const[selCat,setSelCat] = useState("all");
 
   const {data,error} = useSWR(user._id===null?null:`${base_url}/api/details/user?ther=allFriendsId`,async function fetcher(){
       let arr= new Set([]);
@@ -36,10 +38,6 @@ const Index = () => {
   return <h1>{error.message}</h1>
   }
 
-  if(!data){
-    return <h1>Loading....</h1>
-  }
-
   const getname = async(str)=>{
     try{
       let searchname=str.replace(/ /g,"");
@@ -56,6 +54,7 @@ const Index = () => {
     let str=e.target.value;
     let result=await getname(str);
     setName(result);
+    
   }
 
   const handleCollab = async(id)=>{
@@ -73,6 +72,25 @@ const Index = () => {
     }
   }
 
+  const handleCat = async(e)=>{
+      const cat= e.target.value.toLowerCase();
+      setSelCat(cat);
+      if(cat==="all"){
+        return;
+      }
+      const res = await axios.get(`${base_url}/api/search/personCatSearch?category=${cat}`)
+      
+     
+      let arr =res.data.result[0].userId;
+      let allUser =[];
+      await Promise.all(arr.map(async(id,idx)=>{
+        const res = await axios.get(`${base_url}/api/details/user?id=${id}&other=allFriendsId`);
+        allUser.push(res.data.result);
+      }))
+      setCatUser(allUser);
+
+    } 
+
   return (
     <div className={style.frame}>
       <div className={style.block}>
@@ -88,7 +106,7 @@ const Index = () => {
           /> */}
         </div>
         <div className={style.options}>
-          <select placeholder='Categories'>
+          <select onChange={(e)=>handleCat(e)} placeholder='Categories'>
             <option value="all">All</option>
             {
                 allCategory.map((cat,idx)=>(
@@ -102,7 +120,41 @@ const Index = () => {
       </div>
       <div className={style.block2}>
         <div className={style.userCont}>
-          {
+          
+          {selCat!=='all' && (
+             catUser.map((sug,idx)=>{
+              if(sug===undefined || sug===null){
+                return <div key={idx+"sug"}></div>;
+              }
+              return (
+                <div key={idx+"sug"} className={style.box}>
+                  <div className={style.info}>
+                    <div className={style.info2}>
+                      <div style={{alignItems: "center"}}><img src={'images/user.svg'}></img></div>
+                      <div style={{flexDirection:"column"}}>
+                        <h2 style={{margin:"3px 7px"}}>{sug?.name}</h2>
+                        <p style={{margin:"0px 7px"}}>{sug?.location}</p>
+                      </div>
+                      <div style={{position:"absolute",right:"10px",alignItems: "center"}}><button>msg</button></div>
+                    </div>
+                    <div className={style.info3}>
+                      <p>{sug?.headline}</p>
+                      <h6>Talk to me about</h6>
+                      <div>
+                        {sug?.skillId.map((skill)=>(
+                          <span>{skill}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  {!collabed.has(sug?._id) && <motion.button whileTap={{scale:"0.8"}} onClick={(e)=>handleCollab(sug?._id)}>Collab</motion.button>}
+                  {collabed.has(sug?._id) && <button>Friends</button>}  
+                </div>
+              )  
+            })
+          )}
+          {data===undefined && <div>Loading...</div>}
+          { selCat==="all" && data!==undefined && 
             data.map((sug,idx)=>{
               if(sug===undefined || sug===null){
                 return <div key={idx+"sug"}></div>;
@@ -114,15 +166,18 @@ const Index = () => {
                       <div style={{alignItems: "center"}}><img src={'images/user.svg'}></img></div>
                       <div style={{flexDirection:"column"}}>
                         <h2 style={{margin:"3px 7px"}}>{sug?.name}</h2>
-                        <p style={{margin:"0px 7px"}}>Mohali,punjab</p>
+                        <p style={{margin:"0px 7px"}}>{sug?.location}</p>
                       </div>
                       <div style={{position:"absolute",right:"10px",alignItems: "center"}}><button>msg</button></div>
                     </div>
                     <div className={style.info3}>
-                      <p>Ml learner working | web</p>
+                      <p>{sug?.headline}</p>
                       <h6>Talk to me about</h6>
-                      <div><span>Java</span> <span>Java</span>
-                      <span>Java</span><span>Java</span></div>
+                      <div>
+                        {sug?.skillId.map((skill)=>(
+                          <span>{skill}</span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                   {!collabed.has(sug?._id) && <motion.button whileTap={{scale:"0.8"}} onClick={(e)=>handleCollab(sug?._id)}>Collab</motion.button>}

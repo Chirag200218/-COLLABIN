@@ -33,7 +33,7 @@ const Explore = ({setExplore,setCategory,getCatPost})=>{
 
   }
   return (
-        <motion.div className={style.exploreFrame} viewport={{once:true}} initial={{x:150}} whileInView={{x:0}} transition={{type: "tween",duration:"0.5"}} exit={{x:150}}>
+        <motion.div className={style.exploreFrame} viewport={{once:true}} initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:"0.3"}} exit={{x:150}}>
           <h2>Categories</h2>
           {console.log(allCategory)}
           <div className={style.categoryFrame}>
