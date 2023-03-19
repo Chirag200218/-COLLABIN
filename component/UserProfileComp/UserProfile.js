@@ -49,7 +49,6 @@ const OpenBar = ({setOpenBar})=>{
 
 const UserProfile = () => {
 
-
     const dispatch = useDispatch();
     const user = useSelector((state)=>state.user);
     const[openBar,setOpenBar] = useState(false);
@@ -76,8 +75,8 @@ const UserProfile = () => {
                       <span>{user.headline} </span>
                       <div className={style.profileOptions}>
                         <p onClick={()=>setContent("About")} style={{borderRight:"1px solid grey"}}>About</p>
-                        <p onClick={()=>setContent("Posts")} >Posts</p>
-                        <p onClick={()=>setContent("Groups")} style={{borderLeft:"1px solid grey"}}>Groups</p>
+                        <p onClick={()=>setContent("Posts")}>Posts</p>
+                        {/* <p onClick={()=>setContent("Groups")} style={{borderLeft:"1px solid grey"}}>Groups</p> */}
                       </div>
               </div>   
             </div>

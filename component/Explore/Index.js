@@ -120,7 +120,7 @@ const Index = () => {
       </div>
       <div className={style.block2}>
         <div className={style.userCont}>
-          
+          {selCat!=='all' && catUser.length===0 && <div>No {selCat} category user found</div>}
           {selCat!=='all' && (
              catUser.map((sug,idx)=>{
               if(sug===undefined || sug===null){

@@ -63,6 +63,9 @@
     height: 79vh;
     overflow: scroll;
     overflow-x: hidden;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .userCont{
@@ -72,6 +75,10 @@
     align-items: center;
     padding: 30px 10px;
     overflow: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .info{
