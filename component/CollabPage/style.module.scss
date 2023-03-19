@@ -16,14 +16,17 @@
     position:  absolute;
     bottom: 10px;
     right: 10px;
+    height: 40px;
     button{
-        background-color: #929aab;
-        width: 70px;   
-        border: none;
+        font-size: 18px;
+        background-color: #929AAB;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        border: 0.4px solid #323741;
+        width: 90px;   
+        height: 100%;
         border-radius: 10px;
         padding: 5px 10px;
-        color: white;
-        font-size: 13px;
+        color: black;
         cursor: pointer;
     }
    
@@ -69,7 +72,7 @@
     padding: 10px;
     border-radius: 10px;
     margin-top: 10px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 .head{
     position: relative;
@@ -104,6 +107,7 @@
     margin-top: 10px;
     width: 100%;
     height: fit-content;
+    margin-bottom: 45px;
     h2{
         margin-bottom: 1px;
     }
@@ -231,13 +235,17 @@
 }
 
 .chatCont{
-    height: 30px;
-    width: 200px;
+    height: 40px;
+    width: fit-content;
     margin: 8px 0px;
+    margin-top: 30px;
     font-size: 18px;
     background-color: #929AAB;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border: 1px solid #323741;
     display: flex;
     border-radius: 18px;
     align-items: center;
+    font-weight: 500;
     padding: 8px;
 }

@@ -7,8 +7,8 @@ import axios from 'axios';
 const base_url = process.env.NEXT_PUBLIC_URL;
 import useSWR from 'swr';
 import Filter from './Filter';
-import Swal from 'sweetalert2'
-
+import Swal from 'sweetalert2';
+import { motion } from 'framer-motion';
 
 
  const Group = () => {
@@ -141,8 +141,7 @@ import Swal from 'sweetalert2'
                         </div>
                         <div className={style.dock} onClick={(e)=>MailMessage(e,d?.groupEmail,d?.title)}>
                             {console.log(d?.groupEmail)}
-                            <button onClick={()=>modal()}>Dock</button>
-                            {/* {Swal("Good job!", "You clicked the button!", "success")} */}
+                            <motion.button whileTap={{scale:"0.8"}} onClick={()=>modal()}>Dock</motion.button>
                         </div>
                     </div>
                 ))

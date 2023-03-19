@@ -214,8 +214,11 @@ const Index = () => {
    
   }
   const onSubmit = async(data) => {
-    const res = await convertToBase64(data.image[0]);
-    data.image = res;
+    console.log(typeof(data.image));
+    if(typeof(data.image)!=="string") {
+      const res = await convertToBase64(data.image[0]);
+      data.image = res;
+    }
     await axios.put(`${base_url}/api/details/user`,{allData,personal:data,id:user._id});
     router.back();
   }
