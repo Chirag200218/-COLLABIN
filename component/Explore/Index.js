@@ -123,6 +123,7 @@ const Index = () => {
           {selCat!=='all' && catUser.length===0 && <div>No {selCat} category user found</div>}
           {selCat!=='all' && (
              catUser.map((sug,idx)=>{
+              {console.log(sug.img)}
               if(sug===undefined || sug===null){
                 return <div key={idx+"sug"}></div>;
               }
@@ -130,7 +131,7 @@ const Index = () => {
                 <div key={idx+"sug"} className={style.box}>
                   <div className={style.info}>
                     <div className={style.info2}>
-                      <div style={{alignItems: "center"}}><img src={'images/user.svg'}></img></div>
+                      <div style={{alignItems: "center"}}><img src={sug.image}></img></div>
                       <div style={{flexDirection:"column"}}>
                         <h2 style={{margin:"3px 7px"}}>{sug?.name}</h2>
                         <p style={{margin:"0px 7px"}}>{sug?.location}</p>
@@ -161,15 +162,14 @@ const Index = () => {
               }
               return (
                 <div key={idx+"sug"} className={style.box}>
-                  {console.log(sug)}
                   <div className={style.info}>
                     <div className={style.info2}>
-                      <div style={{alignItems: "center"}}><img src={'images/user.svg'}></img></div>
+                      <div style={{alignItems: "center"}}><img src={sug.image}></img></div>
                       <div style={{flexDirection:"column"}}>
                         <Link style={{margin:"3px 7px"}} href={`/profile?id=${sug._id}`} >{sug?.name}</Link>
                         <p style={{margin:"0px 7px"}}>{sug?.location}</p>
                       </div>
-                      <div style={{position:"absolute",right:"10px",alignItems: "center"}}><button>msg</button></div>
+                      <div style={{position:"absolute",right:"10px",alignItems: "center"}}><button>ping</button></div>
                     </div>
                     <div className={style.info3}>
                       <p>{sug?.headline}</p>

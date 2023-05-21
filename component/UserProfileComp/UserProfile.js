@@ -89,8 +89,9 @@ const UserProfile = () => {
                       {user.image!==null? <img src={user.image}></img>:<img src={'/images/user.svg'}></img> }
                       <span>{user.headline} </span>
                       <div className={style.profileOptions}>
-                        <p onClick={()=>setContent("About")} style={{borderRight:"1px solid grey"}}>About</p>
-                        <p onClick={()=>setContent("Posts")}>Posts</p>
+                        <p style={{ width: "30%"}} onClick={()=>setContent("About")}>About</p>
+                        <div style={{display:"inline",height:"65%", width: "1%",borderRight:"0.3px solid black"}}></div>
+                        <p style={{ width: "30%"}} onClick={()=>setContent("Posts")}>Posts</p>
                         {/* <p onClick={()=>setContent("Groups")} style={{borderLeft:"1px solid grey"}}>Groups</p> */}
                       </div>
               </div>   

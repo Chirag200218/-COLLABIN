@@ -51,7 +51,7 @@ function Category_selection() {
 		return(
 			<>	
 				{arr.map((data,idx)=>(
-					<button key={idx} style={{backgroundColor:toggle===idx?"green":"white"}} onClick={()=>{setDomainCat(category_Data[data]),setToggle(idx)}}>{data}</button>
+					<button key={idx} style={{border:toggle===idx?"2px solid #1086e8":"",backgroundColor:toggle===idx?"white":"white"}} onClick={()=>{setDomainCat(category_Data[data]),setToggle(idx)}}>{data}</button>
 				))}
 			</>
 		)
@@ -60,7 +60,7 @@ function Category_selection() {
 		 return(
 			<>	
 				{domainCat.map((data,idx)=>(
-					<button key={idx} style={{backgroundColor:selectedCats.has(data.toLowerCase())?"blue":"white"}}onClick={()=>handleCatClick(data)}>{data}</button>
+					<button key={idx} style={{boxShadow:selectedCats.has(data.toLowerCase())?"rgba(0, 0, 0, 0.35) 0px -35px 40px -34px inset":"",border:selectedCats.has(data.toLowerCase())?"0.4px solid #e4e4e4":"",backgroundColor:selectedCats.has(data.toLowerCase())?"#2f60c9":"",color:selectedCats.has(data.toLowerCase())?"white":"black"}}onClick={()=>handleCatClick(data)}>{data}</button>
 				))}
 			</>
 		)
@@ -99,15 +99,15 @@ function Category_selection() {
 
 
   return (
-    <div className={styles.catCont}>
+    <div className={styles.catCont} style={{padding:"10px 0px"}}>
         <h1>Choose your Interests</h1>
         
 
-        <div className="CategorySection">
+        <div className={styles.CategorySection}>
             <input type='text'placeholder="Search your category" onChange={(e)=>handleSearch(e)}/>
             
             {options.length>=1 && 
-            <div className ="Option">{
+            <div className ={styles.Option}>{
               options.map((data,idx)=>(
                 <>
                   <button key={idx+"@"+data} style={{backgroundColor:selectedCats.has(data)?"blue":"white"}}onClick={()=>handleCatClick(data)}>{data}</button>
@@ -115,10 +115,10 @@ function Category_selection() {
               ))	
             }
             </div>}
-            <div className ="Categories">
+            <div className ={styles.Categories}>
               <HandleMainCategory/>
             </div>
-            <div className ="SubCategory">
+            <div className ={styles.SubCategory}>
               <HandleSubCategories/>
             </div>
           </div>

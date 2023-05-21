@@ -85,6 +85,9 @@ const SigninP = () => {
           )
 
         }
+        <div className={styles.deskTop}>
+          <h1 style={{margin:"auto"}}>Please open web application on mobile.</h1>
+        </div>
         <div className={styles.frame}>
            <p style={{fontFamily:"cursive",fontStyle:"oblique",fontWeight:"600",fontSize:"44px"}}>WelCome</p>
            <p style={{fontSize:"35px"}}>Glad to see you</p>
@@ -106,7 +109,7 @@ const SigninP = () => {
               </div>
            </div>
            
-           <p style={{"color":"#17177d"}}>Already a user?<span style={{marginLeft:"7px",fontWeight:"600",fontSize:"18px",color:"#17177d",cursor:"pointer"}} onClick={()=>onClickFunc()}>SignUp</span></p>
+           <p style={{"color":"#17177d",marginTop:"40px"}}>Already a user?<span style={{marginLeft:"7px",fontWeight:"600",fontSize:"18px",color:"#17177d",cursor:"pointer"}} onClick={()=>onClickFunc()}>signup</span></p>
         </div>
         <style jsx>
         {`

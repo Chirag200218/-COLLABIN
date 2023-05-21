@@ -60,7 +60,6 @@ const Feed = () => {
   const {data,error} = useSWR(user._id===null?null:`${base_url}/api/details/user?other=allPostsId`, async function fetcher(){
     let arr = new Set([]);
     setLoad(true);
-    console.log("user-->  "+user.friendId)
     await Promise.all(user.friendId.map(async(id)=>{
       const res = await axios.get(`${base_url}/api/details/user?id=${id}&other=allPostsId`);
       console.log(res.data.result.PostId);
@@ -91,7 +90,6 @@ const Feed = () => {
         });
       }
     }))
-    console.log("firebase--- "+ categoryData);
     setCatData(categoryData);
     setLoad(false);
     return postIds;

@@ -1,5 +1,5 @@
 .collabFrame{
-    background-color: black;
+    background-color: #A9C9FF;
     width: 100%;
     height: 95vh;
     padding-top: 20px;
@@ -28,14 +28,16 @@
     height: 85vh;
     background-color: #EEEEEE;;
     border-radius: 35px 35px 0px 0px;
+    overflow: scroll;
+
 }
 
 
  
 
 .switchbutton {
-    background:#929aab;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    background: rgba(255, 255, 255, 0.2);
+    // box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     border-radius: 30px;
     overflow: hidden;
     width: 240px;
@@ -48,6 +50,9 @@
     position: relative;
     margin: auto;
     margin-bottom: 10px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
   
     &:before {
       content: "Discuss";

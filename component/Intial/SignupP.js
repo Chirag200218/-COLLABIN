@@ -73,7 +73,7 @@ const SignupP = ()=> {
     }
     
   return (
-    <div className={styles.box}>
+    <div className={styles.box} style={{paddingTop:"7vh"}}>
         {
           load && (
             <div className="loaderPage">
