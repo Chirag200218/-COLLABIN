@@ -169,7 +169,7 @@ const Index = () => {
                         <Link style={{margin:"3px 7px"}} href={`/profile?id=${sug._id}`} >{sug?.name}</Link>
                         <p style={{margin:"0px 7px"}}>{sug?.location}</p>
                       </div>
-                      <div style={{position:"absolute",right:"10px",alignItems: "center"}}><button>msg</button></div>
+                      <div style={{position:"absolute",right:"10px",alignItems: "center"}}><button>ping</button></div>
                     </div>
                     <div className={style.info3}>
                       <p>{sug?.headline}</p>
