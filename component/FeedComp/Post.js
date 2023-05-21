@@ -54,7 +54,6 @@ const Post = ({post}) => {
 
   return (
     <>
-        
         <div className={style.feed}>
         <div className={style.info}>
             <img src={postData?.image}></img>

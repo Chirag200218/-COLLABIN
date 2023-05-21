@@ -169,7 +169,7 @@ function PostalModal(props) {
 							
 							<SharedContent>
 								<UserInfo>
-									{user.profilePic ? <img src={user.profilePic} alt="" /> : <img src="/images/user.svg" alt="" />}
+									{user.image ? <img src={user.image} alt="" /> : <img src="/images/user.svg" alt="" />}
 									<span>{user.name ? user.name : "Name"}</span>
 								</UserInfo>
 								<Editor>
@@ -409,7 +409,8 @@ const SharedContent = styled.div`
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
-	height:65vh;
+	height:fit-content;
+	max-height:65vh;
 	overflow-y: scroll;
 	vertical-align: baseline;
 	background: transparent;
@@ -419,7 +420,7 @@ const SharedContent = styled.div`
 const UserInfo = styled.div`
 	display: flex;
 	align-items: center;
-	padding: 10px 24px;
+	padding: 10px 10px;
 	img {
 		width: 48px;
 		height: 48px;
