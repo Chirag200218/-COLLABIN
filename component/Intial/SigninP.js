@@ -88,18 +88,19 @@ const SigninP = () => {
 
         }
         <div className={styles.frame}>
-           <h1>Sign In</h1>
+           <p style={{fontFamily:"cursive",fontStyle:"oblique",fontWeight:"600",fontSize:"44px"}}>WelCome</p>
+           <p style={{fontSize:"35px"}}>Glad to see you</p>
            <div className={styles.box}>
               <div className={styles.innerbox}>
-                <p>Already a user?<span style={{marginLeft:"7px",fontSize:"18px",color:"blue",cursor:"pointer"}} onClick={()=>onClickFunc()}>SignUp</span></p>
+               
                 <form onSubmit={handleSubmit(onSubmit)}>
                         <input type="email" name="email" {...register("email",{required: true})} placeholder=" Email:" className={styles.input}/>
                         <input type="password" name="password" {...register("password",{required: true,minLength: 6})} placeholder="Password" className={styles.input}/>
                     <motion.button whileTap={{scale:"0.8"}} type="submit">Sign In</motion.button>
                 </form>
               </div>
-               <span>OR</span>
-              <div>
+              <div style={{display:"flex",alignItems:"center",marginBottom:"10px",margin:"20px auto",width:"170px"}}><div style={{width:"60px",borderBottom:"0.5px solid grey",marginRight:"10px"}}></div>OR<div style={{width:"60px",borderBottom:"0.5px solid grey",marginLeft:"10px"}}></div></div>
+              <div style={{width:"200px",margin:"auto"}}>
               {<GoogleLogin
                   onSuccess={(res)=>CreateorGetUser(res)}
                   onError={(res)=>console.log("google login error",res)}
@@ -107,7 +108,7 @@ const SigninP = () => {
               </div>
            </div>
            
-          
+           <p style={{"color":"#17177d"}}>Already a user?<span style={{marginLeft:"7px",fontWeight:"600",fontSize:"18px",color:"#17177d",cursor:"pointer"}} onClick={()=>onClickFunc()}>SignUp</span></p>
         </div>
         <style jsx>
         {`

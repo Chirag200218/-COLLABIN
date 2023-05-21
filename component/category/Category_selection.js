@@ -103,114 +103,29 @@ function Category_selection() {
         <h1>Choose your Interests</h1>
         
 
-        <CategorySection>
+        <div className="CategorySection">
             <input type='text'placeholder="Search your category" onChange={(e)=>handleSearch(e)}/>
             
             {options.length>=1 && 
-            <Option>{
+            <div className ="Option">{
               options.map((data,idx)=>(
                 <>
-                  <button key={idx} style={{backgroundColor:selectedCats.has(data)?"blue":"white"}}onClick={()=>handleCatClick(data)}>{data}</button>
+                  <button key={idx+"@"+data} style={{backgroundColor:selectedCats.has(data)?"blue":"white"}}onClick={()=>handleCatClick(data)}>{data}</button>
                 </>
               ))	
             }
-            </Option>}
-            <Categories>
+            </div>}
+            <div className ="Categories">
               <HandleMainCategory/>
-            </Categories>
-            <SubCategory>
+            </div>
+            <div className ="SubCategory">
               <HandleSubCategories/>
-            </SubCategory>
-          </CategorySection>
+            </div>
+          </div>
           <button as={motion.button} whileTap={{scale:0.8}} className={styles.button} onClick={(e)=>handleSubmit(e)}>submit</button>
     </div>
     
   )
 }
 
-export default Category_selection
-
-const CategorySection = styled.div`
-	position:relative;
-	height:92vh;
-	width:100%;
-  padding-top:10px;
-	border:1px solid grey;
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-	input{
-		padding-left:20px;
-		height:50px;
-		width:300px;
-		border-radius:30px;
-		border:0.3px solid grey;
-	}
-`;
-const Option = styled.div`
-		top:70px;
-		z-index:3;
-		background-color:white;
-		position:absolute;
-    min-height:400px;
-		height:fit-content;
-		width:100%;
-		border:1px solid red;
-		display:flex;
-		flex-wrap:wrap;
-    align-content: flex-start;
-		button{
-			height:50px;
-			width:fit-content;
-			min-width:70px;
-			padding:0px 5px;
-			background:#e6e5e5;
-      border-radius:18px;
-			margin:10px;
-		}
-
-`;
-const Categories = styled.div`
-  margin:10px 0px;
-	height:70px;
-	width:96%;
-	border:1px solid grey;
-	display:flex;
-	align-items:center;
-	overflow:scroll;
-	::-webkit-scrollbar {
-		width: 0px;
-		height:0px;
-		background: transparent;
-	}
-	button{
-		height:40px;
-		width:fit-content;
-		padding:3px;
-		min-width:80px;
-		border-radius:18px;
-		margin:0px 5px;
-		background:transparent;
-		cursor:pointer;
-		border:1px solid grey
-	}
-`;
-const SubCategory = styled.div`
-	height:75%;
-	width:100%;
-	display:flex;
-	flex-wrap:wrap;
-  flex-shrink:0;
-	overflow:scroll;
-	overflow-x:hidden;
-  align-content: flex-start;
-	button{
-    margin:15px 20px;
-		height:80px;
-		width:140px;
-		padding:2px;
-    border:1px solid 10px;
-		background:#e6e5e5;
-    border-radius:10px;
-	}
-`;
+export default Category_selection;

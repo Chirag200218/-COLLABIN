@@ -83,45 +83,45 @@ const SignupP = ()=> {
 
         }
         <div className={styles.comp}>
-          <p>CollabIn</p>
+          <p style={{fontFamily:"cursive",fontStyle:"oblique",fontWeight:"600",fontSize:"44px"}}>Creat Account</p>
+          <p>to get started now!</p>
         </div>
         
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data" className={styles.innerbox}>
-              <div className={styles.para}>
-                <p style={{marginBottom:"10px",color:"#606060",fontSize:"20px"}}>Create your account</p>
-              </div>
               <input type="text" name="name" {...register("name",{required: true})} placeholder={"Name"}/>
               {errors.name && errors.name.type === "required" && (
-                <p className="errorMsg">name is required.</p>
+                <p style={{"fontSize":"13px"}} className="errorMsg">name is required.</p>
               )}
           
               <input type="email" name="email" {...register("email",{required: true,pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/})} placeholder={"Email"}/>
               {errors.email && errors.email.type === "required" && (
-                <p className="errorMsg">Email is required.</p>
+                <p style={{"fontSize":"13px"}} className="errorMsg">Email is required.</p>
               )}
               {errors.email && errors.email.type === "pattern" && (
-                <p className="errorMsg">Email is not valid.</p>
+                <p  style={{"fontSize":"13px"}} className="errorMsg">Email is not valid.</p>
               )}
             
         
               <input type="password" name="password" {...register("password",{required: true,minLength: 6})} placeholder={"Password"}/>
               {errors.password && errors.password.type === "required" && (
-                <p className="errorMsg">password is required.</p>
+                <p style={{"fontSize":"13px"}}className="errorMsg">password is required.</p>
               )}
               {errors.password && errors.password.type === "minLength" && (
-                <p className="errorMsg">Enter some lengthy password.</p>
+                <p style={{"fontSize":"13px"}}className="errorMsg">Enter some lengthy password.</p>
               )}
             
         
             <motion.button whileTap={{scale:"0.8"}} type='submit'>Sign up</motion.button>
         </form>
-
-        <p className={styles.onsite}>Already a user?<span style={{marginLeft:"7px",fontSize:"15px",color:"blue",cursor:"pointer"}} onClick={()=>onClickFunc()}>SignIn</span></p>
       <div>
-        {<GoogleLogin
-          onSuccess={(res)=>CreateorGetUser(res)}
-          onError={(res)=>console.log("google login error",res)}
-        />}
+      <div style={{display:"flex",alignItems:"center",marginBottom:"10px",margin:"20px auto",width:"170px"}}><div style={{width:"60px",borderBottom:"0.5px solid grey",marginRight:"10px"}}></div>OR<div style={{width:"60px",borderBottom:"0.5px solid grey",marginLeft:"10px"}}></div></div>
+      <div style={{width:"200px",margin:"auto"}}>
+      {<GoogleLogin
+            onSuccess={(res)=>CreateorGetUser(res)}
+            onError={(res)=>console.log("google login error",res)}
+      />}
+      </div>
+      <p style={{color:"#17177d"}} className={styles.onsite}>Already a user?<span style={{marginLeft:"7px",fontWeight:"600",fontSize:"18px",color:"#17177d",cursor:"pointer"}} onClick={()=>onClickFunc()}>SignIn</span></p>
       </div>
       <style jsx>
         {`
