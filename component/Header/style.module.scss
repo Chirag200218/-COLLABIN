@@ -6,7 +6,7 @@
     height: 45px;
     color: #393e46;
     font-style: ubuntu;
-    background-color: #929aab;
+    border: 1px solid #d4d5e4;
     display: flex;
     align-items: center;
     h1{
@@ -15,6 +15,7 @@
         font-family: 'Ubuntu', sans-serif;
         padding: 0px 10px;
         font-family: system-ui;
+        color: var(--color-theme);
     }
     box-shadow: rgba(0, 0, 0, 5%) 0px -50px 36px -28px inset;
 }

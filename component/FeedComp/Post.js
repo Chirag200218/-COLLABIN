@@ -60,11 +60,12 @@ const Post = ({post}) => {
             <img src={postData?.image}></img>
             <h3>{postData?.name}</h3>
         </div>
+        <div style={{borderBottom:"0.6px solid #e4e4e4" ,margin:"5px auto",width:"95%"}}></div>
         {
         (post?.url || post?.media) && (
-            <div className={style.media} >
+            <div className={style.media} style={{display:"flex",justifyContent:"center"}} >
                 {postData.url && <ReactPlayer  className="react-player" playing={true} controls={true} width={"100%"} url={postData.url}/>}
-                {postData.media && ReactPlayer.canPlay(postData.media)===false && <img src={ post.media} alt="" />}
+                {postData.media && ReactPlayer.canPlay(postData.media)===false && <img src={ post.media}  alt="" />}
                 {postData.media && ReactPlayer.canPlay(postData.media) && <ReactPlayer  className="react-player" onClick={()=>{console.log("video")}} playing={true} controls={true} width={"100%"} url={post.media} />}
             </div>
         )}
