@@ -1,5 +1,5 @@
-import Category from "../../../model/category";
-import connectmongo from "../../../utils/mongoconnect";
+import Category from "../../model/category";
+import connectmongo from "../../utils/mongoconnect";
 export default async function handler(req,res){
     await connectmongo();
     if(req.method==='GET'){
