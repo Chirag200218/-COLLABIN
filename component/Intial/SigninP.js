@@ -23,9 +23,7 @@ const SigninP = () => {
 
     const onSubmit = async(data) => {
         try {
-
           setLoad(true);
-          
           const result = await axios.get(`${base_url}/api/auth/isuser?email=${data.email}&password=${data.password}`)
           if(result.data.success===true){
             localStorage.setItem("userId", result.data.id);

@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 const base_url = process.env.NEXT_PUBLIC_URL;
 import style from './Explore.module.scss';
 import useSWR from 'swr';
-import { Autocomplete,TextField } from '@mui/material';
 import { allCategory } from '../category/category_data';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const Index = () => {  
   const user = useSelector((state)=>state.user);
@@ -161,11 +161,12 @@ const Index = () => {
               }
               return (
                 <div key={idx+"sug"} className={style.box}>
+                  {console.log(sug)}
                   <div className={style.info}>
                     <div className={style.info2}>
                       <div style={{alignItems: "center"}}><img src={'images/user.svg'}></img></div>
                       <div style={{flexDirection:"column"}}>
-                        <h2 style={{margin:"3px 7px"}}>{sug?.name}</h2>
+                        <Link style={{margin:"3px 7px"}} href={`/profile?id=${sug._id}`} >{sug?.name}</Link>
                         <p style={{margin:"0px 7px"}}>{sug?.location}</p>
                       </div>
                       <div style={{position:"absolute",right:"10px",alignItems: "center"}}><button>msg</button></div>
