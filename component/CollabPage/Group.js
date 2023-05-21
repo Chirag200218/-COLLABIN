@@ -17,7 +17,7 @@ import { motion } from 'framer-motion';
     const [load,setLoad]=useState(true);
     const [myWork,setMyWork] = useState(false);
     const [grouppost2,setgroupPost2] = useState([]);
-    const modal = () => {
+    const modal = (e,toemail,describe) => {
 
         Swal.fire({
             title: 'Are you sure?',
@@ -37,6 +37,7 @@ import { motion } from 'framer-motion';
             
             }).then((result) => {
             if (result.isConfirmed) {
+                MailMessage(e,toemail,describe);
                 Swal.fire(
                 'Sent!',
                 'Your message has been sent.',
@@ -140,9 +141,9 @@ import { motion } from 'framer-motion';
                             </div>     
                         </div>
                         
-                        <div className={style.dock} onClick={(e)=>MailMessage(e,d?.groupEmail,d?.title)}>
+                        <div className={style.dock}>
                             {console.log(d?.groupEmail)}
-                            <motion.button whileTap={{scale:"0.8"}} onClick={()=>modal()}>Dock</motion.button>
+                            <motion.button whileTap={{scale:"0.8"}} onClick={(e)=>modal(e,d?.groupEmail,d?.title)}>Dock</motion.button>
                         </div>
                     </div>
                     

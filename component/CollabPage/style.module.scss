@@ -19,15 +19,17 @@
     height: 40px;
     button{
         font-size: 18px;
-        background-color: #929AAB;
+        background-color:whitesmoke;
+        color: rgb(70, 70, 224);
+        border: 1px solid rgb(146, 146, 146);
         box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
         width: 90px;   
         height: 100%;
         border-radius: 10px;
         outline: none;
-        border: none;
+        // border: none;
         padding: 5px 20px 5px 20px;
-        color: black;
+        // color: black;
         cursor: pointer;
     }
    
