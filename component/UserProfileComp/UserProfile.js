@@ -5,12 +5,11 @@ import { useRouter } from 'next/router';
 import { reset } from '../../redux_feature/UserInfo/userSlice';
 import { useEffect } from 'react';
 import { motion,AnimatePresence } from 'framer-motion';
-import { base_url } from '../../utils/connection';
 import Posts from "./Posts.js"
 import axios from 'axios';
-import Link from 'next/link';
 import About from './About';
 import Groups from './Groups';
+const base_url = process.env.NEXT_PUBLIC_URL;
 
 const OpenBar = ({setOpenBar})=>{
     const router = useRouter();
@@ -35,30 +34,44 @@ const OpenBar = ({setOpenBar})=>{
         router.push("/signin");
     }
     const handleUpdate = (e)=>{
-      console.log("ijofd");
         e.preventDefault();
         router.push("/userprofile")
+    }
+    const handleCategory = (e)=>{
+      e.preventDefault();
+      router.push("/categories")
     }
       return (
             <motion.div className={style.optionFrame} viewport={{once:true}} initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:"0.3"}} exit={{x:150}}>
               <button className={style.menuButton} onClick={(e)=>handleLogout(e)}>Logout</button>
               <button   className={style.menuButton} onClick={(e)=>handleUpdate(e)}>Update profile</button>
+              <button className={style.menuButton} onClick={(e)=>handleCategory(e)}>Update category</button>
             </motion.div>
       )
 }
 
-const UserProfile = () => {
-
-    const dispatch = useDispatch();
-    const user = useSelector((state)=>state.user);
+const UserProfile = ({userid}) => {
+    const x=useSelector((state)=>state.user);
+    const [user,setUser] = useState(x);
     const[openBar,setOpenBar] = useState(false);
     const[content,setContent] = useState("About");
     const[posts,setPosts] = useState([]);
-
+    useEffect(()=>{
+      const fetchPosts = async ()=>{
+        if(userid){
+          const res=await axios.get(`${base_url}/api/details/user?id=${userid}`);
+          setUser(res.data.result);
+        }else{
+          setUser(x);
+        }
+      }
+      fetchPosts();
+    },[userid]);
    
     
   return (
     <>
+      {/* {console.log(userid +" "+x._id)} */}
         <AnimatePresence>
             {openBar===true && 
                 <OpenBar setOpenBar={setOpenBar}/>
@@ -68,7 +81,7 @@ const UserProfile = () => {
             <div className={style.upperCont}>
               <div className={style.userHeader}> 
                   <span>{user.name}</span>
-                  <img onClick={()=>setOpenBar(!openBar)}src='/images/humburger.svg' style={{cursor:"pointer"}}></img>
+                  {userid === x._id && <img onClick={()=>setOpenBar(!openBar)}src='/images/humburger.svg' style={{cursor:"pointer"}}></img>}
               </div>
               <div className={style.about}>
                       {user.image!==null? <img src={user.image}></img>:<img src={'/images/user.svg'}></img> }
@@ -80,9 +93,9 @@ const UserProfile = () => {
                       </div>
               </div>   
             </div>
-            {content==="About" && <About/> }
-            {content==="Posts" && <Posts/> }
-            {content==="Groups" && <Groups/>}
+            {content==="About" && <About userdata={user}/> }
+            {content==="Posts" && <Posts userdata={user}/> }
+            {content==="Groups" && <Groups userdata={user}/>}
 
             {/* <div className={style.skills}>
               <h3>Skills</h3>

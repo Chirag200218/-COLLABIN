@@ -143,10 +143,10 @@ const Feed = () => {
       <div className={style.feedFrame}>
         <div style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
           <div className={style.showCategory}>
-          <span onClick={()=>setCategory("All")} style={{backgroundColor:category==='All'?"#929aab":"transparent",color:category==='All'?"#F7F7F7":"#393E46"}}>All</span>
+          <span onClick={()=>setCategory("All")} style={{backgroundColor:category==='All'?"#2a4e89":"transparent",color:category==='All'?"#F7F7F7":"#393E46"}}>All</span>
             {
               user.categoryId.map((cat,index)=>(
-                  <span onClick={()=>{setCategory(cat); getCatPost(cat)}}  style={{backgroundColor:cat!==category?"transparent":"#929aab",color:cat!==category?"#393E46":"#F7F7F7"}} key={index+"cat"} >{cat}</span>
+                  <span onClick={()=>{setCategory(cat); getCatPost(cat)}}  style={{backgroundColor:cat!==category?"transparent":"#2a4e89",color:cat!==category?"#393E46":"#F7F7F7"}} key={index+"cat"} >{cat}</span>
               ))
             }
         </div>

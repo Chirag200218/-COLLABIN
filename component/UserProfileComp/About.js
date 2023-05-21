@@ -55,8 +55,8 @@ const LinkSection = ({interest})=>{
 }
 
 
-const About = () => {
-    const user = useSelector((state)=>state.user);
+const About = ({userdata}) => {
+    const user = userdata;
   return (
     <div className={style.optionContainer}>
         {

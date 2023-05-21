@@ -5,9 +5,9 @@ import style from './profile.module.scss';
 import { db } from '../../utils/fireconnect';
 import { doc, getDoc, orderBy, limit } from "firebase/firestore";
 import Post from '../FeedComp/Post';
-const Posts = () => {
+const Posts = ({userdata}) => {
   const[posts,setPosts] = useState([]);
-  const user = useSelector((state)=>state.user);
+  const user = userdata;
   useEffect(()=>{
 
     async function getPost(){

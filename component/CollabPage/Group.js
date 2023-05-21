@@ -124,11 +124,11 @@ import { motion } from 'framer-motion';
                         <div className={style.body}>
                             <h2>{d?.title}</h2>
                             <p>{d?.description}</p>
- 
-                            <div>
+                            <div style={{borderBottom:"0.5px solid #e4e4e4",marginBottom:"5px"}}className={style.abouts}>
                                 <h2>About Group</h2>
                                 <p>{d?.about}</p>
                             </div>
+                            
                             <p style={{fontWeight:"600"}}>Required Skills</p>
                             <div style={{display:"flex",flexWrap:"wrap"}}>
                             {
@@ -139,11 +139,13 @@ import { motion } from 'framer-motion';
  
                             </div>     
                         </div>
+                        
                         <div className={style.dock} onClick={(e)=>MailMessage(e,d?.groupEmail,d?.title)}>
                             {console.log(d?.groupEmail)}
                             <motion.button whileTap={{scale:"0.8"}} onClick={()=>modal()}>Dock</motion.button>
                         </div>
                     </div>
+                    
                 ))
             }
         </div>
