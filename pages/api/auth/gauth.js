@@ -1,5 +1,5 @@
-import User from "../../model/user"
-import connectmongo from "../../utils/mongoconnect";
+import User from "../../../model/user"
+import connectmongo from "../../../utils/mongoconnect";
 
 const authUser=async (req, res) => {
     await connectmongo();

@@ -1,6 +1,6 @@
 
-import Category from '../../model/category';
-import connectmongo from '../../utils/mongoconnect';
+import Category from '../../../model/category';
+import connectmongo from '../../../utils/mongoconnect';
 const handler = async(req,res)=>{
     await connectmongo();
     if(req.method==='GET' && req.query.other==='friendId'){
