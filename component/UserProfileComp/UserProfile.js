@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import style from './profile.module.scss'
 import {useDispatch, useSelector} from 'react-redux';
-import { useRouter } from 'next/router';
 import { reset } from '../../redux_feature/UserInfo/userSlice';
 import { useEffect } from 'react';
 import { motion,AnimatePresence } from 'framer-motion';
