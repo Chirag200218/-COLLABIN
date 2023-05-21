@@ -10,6 +10,7 @@ import axios from 'axios';
 import About from './About';
 import Groups from './Groups';
 const base_url = process.env.NEXT_PUBLIC_URL;
+import { useRouter } from 'next/router';
 
 const OpenBar = ({setOpenBar})=>{
     const router = useRouter();
@@ -50,7 +51,9 @@ const OpenBar = ({setOpenBar})=>{
       )
 }
 
-const UserProfile = ({userid}) => {
+const UserProfile = () => {
+    const router = useRouter();
+    const userid=router.query.id;
     const x=useSelector((state)=>state.user);
     const [user,setUser] = useState(x);
     const[openBar,setOpenBar] = useState(false);
